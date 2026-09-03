@@ -19,4 +19,5 @@ public class LaptopGaming extends Laptop {
         System.out.println("GPU          : " + modelGpu);
         System.out.println("Refresh Rate : " + refreshRate + " Hz");
     }
+    
 }

@@ -19,4 +19,5 @@ public class KipasAngin {
         System.out.println("Merk      : " + merk);
         System.out.println("Kecepatan : " + kecepatan);
     }
+    
 }

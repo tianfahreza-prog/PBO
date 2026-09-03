@@ -19,4 +19,5 @@ public class Lampu {
         System.out.println("Merk      : " + merk);
         System.out.println("Status    : " + (menyala ? "nyala" : "Mati"));
     }
+    
 }

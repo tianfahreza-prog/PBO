@@ -23,4 +23,5 @@ public class LaptopKantor extends Laptop {
         System.out.println("Daya Baterai    : " + dayaTahanBaterai + " jam");
         System.out.println("Ada Fingerprint : " + (adaFingerprint ? "ya" : "Tidak"));
     }
+    
 }

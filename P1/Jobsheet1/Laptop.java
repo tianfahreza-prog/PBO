@@ -17,4 +17,5 @@ public class Laptop {
         System.out.println("Merk : " + merk);
         System.out.println("RAM  : " + ram + " GB");
     }
+    
 }

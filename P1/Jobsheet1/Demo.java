@@ -46,4 +46,5 @@ public class Demo {
         laptopGame.aktifkanFan();
         laptopGame.setRgbKeyboard();
     }
+    
 }
