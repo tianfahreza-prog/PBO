@@ -1,7 +1,5 @@
 package id.ac.polinema;
 
-import main.java.id.ac.polinema.InsufficientBalanceException;
-
 public abstract class Account {
 
     private String accountNumber;
