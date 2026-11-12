@@ -1,52 +1,54 @@
 package id.ac.polinema;
 
 public class Bank {
-    private Account[] accounts;
-    private int count;
+    private AccountRepository repository;
 
-    public Bank(int capacity) {
-        accounts = new Account[capacity];
-        count = 0;
+    public Bank(AccountRepository repository) {
+        this.repository = repository;
     }
 
     public boolean addAccount(Account account) {
-        if (count >= accounts.length) {
+        if (repository.findByNumber(account.getAccountNumber()) != null) {
             return false;
         }
-        accounts[count] = account;
-        count++;
+        repository.save(account);
         return true;
     }
 
     public Account findAccount(String accountNumber) {
-        for (int i = 0; i < count; i++) {
-            if (accounts[i].getAccountNumber().equals(accountNumber)) {
-                return accounts[i];
-            }
-        }
-        return null;
+        return repository.findByNumber(accountNumber);
     }
 
     public void printAllAccounts() {
-        for (int i = 0; i < count; i++) {
-            accounts[i].printInfo();
+        for (Account acc : repository.findAll()) {
+            acc.printInfo();
         }
     }
 
     public void printMonthlyFees() {
-        for (int i = 0; i < count; i++) {
-            System.out.println(accounts[i].getAccountNumber() + " fee: " + accounts[i].monthlyFee());
+        for (Account acc : repository.findAll()) {
+            System.out.println(acc.getAccountNumber() + " fee: " + acc.monthlyFee());
         }
     }
 
     public void processMonthEnd() {
-        for (int i = 0; i < count; i++) {
-            Account acc = accounts[i];
+        for (Account acc : repository.findAll()) {
             if (acc instanceof InterestBearing bearing) {
                 bearing.applyInterest();
                 System.out.println(acc.getAccountNumber() + " interest applied, new balance: " + acc.getBalance());
             }
             System.out.println(acc.getAccountNumber() + " monthly fee: " + acc.monthlyFee());
+        }
+    }
+
+    public void printHistory(String accountNumber) {
+        Account acc = findAccount(accountNumber);
+        if (acc == null) {
+            System.out.println("Account not found: " + accountNumber);
+            return;
+        }
+        for (Transaction t : acc.getHistory()) {
+            System.out.println(accountNumber + " " + t);
         }
     }
 }

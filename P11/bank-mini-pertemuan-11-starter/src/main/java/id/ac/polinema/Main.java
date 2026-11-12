@@ -23,11 +23,16 @@ public class Main {
         } catch (InsufficientBalanceException e) {
             System.out.println("Withdrawal failed: " + e.getMessage());
         }
+        Customer customer4 = new Customer("Budi", "0812-0000-0004");
+        BusinessAccount business = new BusinessAccount("A004", customer4, 2000000.0);
 
-        Bank bank = new Bank(10);
+        Bank bank = new Bank(new InMemoryAccountRepository());
         bank.addAccount(acc1);
         bank.addAccount(acc2);
         bank.addAccount(savings);
+        bank.addAccount(business);
+
         bank.processMonthEnd();
+        bank.printAllAccounts();
     }
 }
